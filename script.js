@@ -6,7 +6,6 @@ function add (...arguments){
     return total;
 }
 
-console.log(add(2, 2, 2, 2));
 
 function subtract (...arguments){
     let total = arguments[0];
@@ -16,7 +15,6 @@ function subtract (...arguments){
     return total;
 }
 
-console.log(subtract(10, 2, 4));
 
 function multiply (...arguments){
     let total = arguments[0];
@@ -26,7 +24,6 @@ function multiply (...arguments){
     return total;
 }
 
-console.log(multiply(2, 2, 2, 2));
 
 function divide (...arguments){
     let total = arguments[0];
@@ -36,4 +33,19 @@ function divide (...arguments){
     return total;
 }
 
-console.log(divide(10, 2, 2, 3));
+
+function operate (a, b, operator){
+    let result
+    if (operator === '+'){
+        result = add(a, b);
+    } else if(operator === '-'){
+        result = subtract(a, b);
+    } else if(operator === '*'){
+        result = multiply(a, b);
+    } else if(operator === '/'){
+        result = divide(a, b);
+    }
+    return result;
+}
+
+console.log(operate(10, 10, '*'));
