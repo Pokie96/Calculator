@@ -17,3 +17,13 @@ function subtract (...arguments){
 }
 
 console.log(subtract(10, 2, 4));
+
+function multiply (...arguments){
+    let total = arguments[0];
+    for(let i = 1; i < arguments.length; i++){
+        total *= arguments[i];
+    }
+    return total;
+}
+
+console.log(multiply(2, 2, 2, 2));
