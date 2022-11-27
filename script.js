@@ -1,44 +1,35 @@
 //All selectors for dom elements we need to access:
 const numButtons = document.querySelectorAll(".numButton");
-const operatorButtons = document.querySelectorAll(".operatorButton")
 const display = document.querySelector(".display");
 const equalsButton = document.querySelector(".equalsButton");
 const clearButton = document.querySelector(".clearButton");
+const addButton = document.getElementById("add");
+const subtractButton = document.getElementById("subtract");
+const multiplyButton = document.getElementById("multiply");
+const divideButton = document.getElementById("divide");
 
 
 //All functions that will be used in my calculator program:
-function add (...arguments){
-    let total = 0;
-    for(let i = 0; i < arguments.length; i++){
-        total += arguments[i];
-    }
+function add (a, b){
+    let total = a + b;
     return total;
 }
 
 
-function subtract (...arguments){
-    let total = arguments[0];
-    for(let i = 1; i < arguments.length; i++){
-        total -= arguments[i];
-    }
+function subtract (a, b){
+    let total = a - b;
     return total;
 }
 
 
-function multiply (...arguments){
-    let total = arguments[0];
-    for(let i = 1; i < arguments.length; i++){
-        total *= arguments[i];
-    }
+function multiply (a, b = 1){
+    let total = a * b;
     return total;
 }
 
 
 function divide (...arguments){
-    let total = arguments[0];
-    for(let i = 1; i < arguments.length; i++){
-        total /= arguments[i];
-    }
+    let total = a / b;
     return total;
 }
 
@@ -61,6 +52,7 @@ let previousNum = '';
 let currentNum = '';
 let operator = '';
 let currentAnswer = 0;
+let clickCounter = 0;
 
 
 //Event listeners for my dom elements:
@@ -74,15 +66,13 @@ for(let i = 0; i < numButtons.length; i++){
 }
 
 
-for(let i = 0; i < operatorButtons.length; i++){
-    operatorButtons[i].addEventListener("click", function(e){
-        operator = e.target.textContent;
-        currentAnswer = (operate(+previousNum, +currentNum, operator));
-        display.textContent = currentAnswer;
-        previousNum = currentAnswer;
-        currentNum = '';
-    });
-}
+addButton.addEventListener("click", function(e){
+    operator = e.target.textContent;
+    currentAnswer = (operate( +previousNum, +currentNum, operator));
+    display.textContent = currentAnswer + operator;
+    previousNum = currentAnswer;
+    currentNum = '';
+})
 
 clearButton.addEventListener("click", function(){
     display.textContent = 0;
