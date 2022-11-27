@@ -1,3 +1,10 @@
+//All selectors for dom elements we need to access:
+const numButtons = document.querySelectorAll(".numButton");
+const operatorButton = document.querySelectorAll(".operatorButton")
+console.log(numButtons)
+
+
+//All functions that will be used in my calculator program:
 function add (...arguments){
     let total = 0;
     for(let i = 0; i < arguments.length; i++){
@@ -48,4 +55,10 @@ function operate (a, b, operator){
     return result;
 }
 
-console.log(operate(10, 10, '*'));
+
+//Event listeners for my dom elements:
+for(let i = 0; i < numButtons.length; i++){
+    numButtons[i].addEventListener("click", function(){
+        console.log("working")
+    });
+}
