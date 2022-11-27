@@ -57,6 +57,7 @@ function operate (a, b, operator){
     return result;
 }
 
+let previousNum = '';
 let currentNum = '';
 let operator = '';
 
@@ -74,11 +75,20 @@ for(let i = 0; i < numButtons.length; i++){
 
 for(let i = 0; i < operatorButtons.length; i++){
     operatorButtons[i].addEventListener("click", function(e){
-        console.log(e.target)
+        operator = e.target.textContent;
+        previousNum = currentNum;
+        currentNum = '';
     });
 }
 
 clearButton.addEventListener("click", function(){
     display.textContent = 0;
     currentNum = '';
+    previousNum = '';
+})
+
+equalsButton.addEventListener("click", function(){
+    display.textContent = (operate(+previousNum, +currentNum, operator));
+    currentNum = '';
+    previousNum = '';
 })
