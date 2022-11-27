@@ -1,6 +1,7 @@
 //All selectors for dom elements we need to access:
 const numButtons = document.querySelectorAll(".numButton");
-const operatorButton = document.querySelectorAll(".operatorButton")
+const operatorButtons = document.querySelectorAll(".operatorButton")
+const display = document.querySelector(".display");
 console.log(numButtons)
 
 
@@ -55,10 +56,21 @@ function operate (a, b, operator){
     return result;
 }
 
+let currentNum = '';
+let operator = '';
+
 
 //Event listeners for my dom elements:
 for(let i = 0; i < numButtons.length; i++){
-    numButtons[i].addEventListener("click", function(){
-        console.log("working")
+    numButtons[i].addEventListener("click", function(e){
+        currentNum += e.target.textContent;
+        display.textContent = currentNum;
+    });
+}
+
+
+for(let i = 0; i < operatorButtons.length; i++){
+    operatorButtons[i].addEventListener("click", function(e){
+        console.log(e.target)
     });
 }
