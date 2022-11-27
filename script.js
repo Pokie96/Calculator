@@ -60,6 +60,7 @@ function operate (a, b, operator){
 let previousNum = '';
 let currentNum = '';
 let operator = '';
+let currentAnswer = 0;
 
 
 //Event listeners for my dom elements:
@@ -76,7 +77,9 @@ for(let i = 0; i < numButtons.length; i++){
 for(let i = 0; i < operatorButtons.length; i++){
     operatorButtons[i].addEventListener("click", function(e){
         operator = e.target.textContent;
-        previousNum = currentNum;
+        currentAnswer = (operate(+previousNum, +currentNum, operator));
+        display.textContent = currentAnswer;
+        previousNum = currentAnswer;
         currentNum = '';
     });
 }
@@ -85,10 +88,13 @@ clearButton.addEventListener("click", function(){
     display.textContent = 0;
     currentNum = '';
     previousNum = '';
+    currentAnswer = 0;
 })
 
 equalsButton.addEventListener("click", function(){
-    display.textContent = (operate(+previousNum, +currentNum, operator));
+    currentAnswer = (operate(+previousNum, +currentNum, operator));
+    display.textContent = currentAnswer;
     currentNum = '';
     previousNum = '';
+    currentAnswer = 0;
 })
