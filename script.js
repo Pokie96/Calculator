@@ -2,7 +2,8 @@
 const numButtons = document.querySelectorAll(".numButton");
 const operatorButtons = document.querySelectorAll(".operatorButton")
 const display = document.querySelector(".display");
-console.log(numButtons)
+const equalsButton = document.querySelector(".equalsButton");
+const clearButton = document.querySelector(".clearButton");
 
 
 //All functions that will be used in my calculator program:
@@ -63,6 +64,8 @@ let operator = '';
 //Event listeners for my dom elements:
 for(let i = 0; i < numButtons.length; i++){
     numButtons[i].addEventListener("click", function(e){
+        currentNum.length > 10 ? 
+        currentNum = currentNum :
         currentNum += e.target.textContent;
         display.textContent = currentNum;
     });
@@ -74,3 +77,8 @@ for(let i = 0; i < operatorButtons.length; i++){
         console.log(e.target)
     });
 }
+
+clearButton.addEventListener("click", function(){
+    display.textContent = 0;
+    currentNum = '';
+})
