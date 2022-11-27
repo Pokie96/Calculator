@@ -17,18 +17,27 @@ function add (a, b){
 
 
 function subtract (a, b){
+    if(a === 0){
+        a = b;
+    }
     let total = a - b;
     return total;
 }
 
 
-function multiply (a, b = 1){
+function multiply (a, b){
+    if(b === 0){
+        b = 1;
+    }
     let total = a * b;
     return total;
 }
 
 
-function divide (...arguments){
+function divide (a, b){
+    if(b === 0){
+        b = 1;
+    }
     let total = a / b;
     return total;
 }
@@ -68,7 +77,31 @@ for(let i = 0; i < numButtons.length; i++){
 
 addButton.addEventListener("click", function(e){
     operator = e.target.textContent;
+    currentAnswer = (operate( +currentNum, +previousNum, operator));
+    display.textContent = currentAnswer + operator;
+    previousNum = currentAnswer;
+    currentNum = '';
+})
+
+subtractButton.addEventListener("click", function(e){
+    operator = e.target.textContent;
     currentAnswer = (operate( +previousNum, +currentNum, operator));
+    display.textContent = currentAnswer + operator;
+    previousNum = currentAnswer;
+    currentNum = '';
+})
+
+multiplyButton.addEventListener("click", function(e){
+    operator = e.target.textContent;
+    currentAnswer = (operate(+currentNum, +previousNum, operator))
+    display.textContent = currentAnswer + operator;
+    previousNum = currentAnswer;
+    currentNum = '';
+})
+
+divideButton.addEventListener("click", function(e){
+    operator = e.target.textContent;
+    currentAnswer = (operate(+previousNum, +currentNum, operator))
     display.textContent = currentAnswer + operator;
     previousNum = currentAnswer;
     currentNum = '';
