@@ -1,6 +1,7 @@
 //All selectors for dom elements we need to access:
 const numButtons = document.querySelectorAll(".numButton");
-const display = document.querySelector(".display");
+const previousDisplay = document.querySelector("#previous-display")
+const currentDisplay = document.querySelector("#current-display");
 const equalsButton = document.querySelector(".equalsButton");
 const clearButton = document.querySelector(".clearButton");
 const addButton = document.getElementById("add");
@@ -17,17 +18,19 @@ function add (a, b){
 
 
 function subtract (a, b){
-    if(a === 0){
-        a = b;
+    if(subtractClickCounter === 0 && a === 0){
+        total = b;
+        subtractClickCounter++;
+    } else{
+        total = a - b;
     }
-    let total = a - b;
     return total;
 }
 
 
 function multiply (a, b){
-    if(b === 0){
-        b = 1;
+    if(a === 0){
+        a = 1;
     }
     let total = a * b;
     return total;
@@ -35,10 +38,7 @@ function multiply (a, b){
 
 
 function divide (a, b){
-    if(b === 0){
-        b = 1;
-    }
-    let total = a / b;
+    total = a / b;
     return total;
 }
 
@@ -59,9 +59,10 @@ function operate (a, b, operator){
 
 let previousNum = '';
 let currentNum = '';
-let operator = '';
-let currentAnswer = 0;
-let clickCounter = 0;
+let currentOperator = '';
+let previousOperator = '';
+let subtractClickCounter = 0;
+let divideClickCounter = 0;
 
 
 //Event listeners for my dom elements:
@@ -70,54 +71,71 @@ for(let i = 0; i < numButtons.length; i++){
         currentNum.length > 10 ? 
         currentNum = currentNum :
         currentNum += e.target.textContent;
-        display.textContent = currentNum;
+        currentDisplay.textContent = currentNum;
     });
 }
 
 
 addButton.addEventListener("click", function(e){
-    operator = e.target.textContent;
-    currentAnswer = (operate( +currentNum, +previousNum, operator));
-    display.textContent = currentAnswer + operator;
-    previousNum = currentAnswer;
+    currentOperator = e.target.textContent;
+    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    previousNum = currentNum;
+    previousDisplay.textContent = previousNum + ' ' + currentOperator;
+    currentDisplay.textContent = currentNum;
     currentNum = '';
+    previousOperator = currentOperator;
+    
 })
 
 subtractButton.addEventListener("click", function(e){
-    operator = e.target.textContent;
-    currentAnswer = (operate( +previousNum, +currentNum, operator));
-    display.textContent = currentAnswer + operator;
-    previousNum = currentAnswer;
+    currentOperator = e.target.textContent;
+    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    previousDisplay.textContent = previousNum + ' ' + currentOperator;
+    currentDisplay.textContent = currentNum;
+    previousNum = currentNum;
     currentNum = '';
+    previousOperator = currentOperator;
+    
 })
 
 multiplyButton.addEventListener("click", function(e){
-    operator = e.target.textContent;
-    currentAnswer = (operate(+currentNum, +previousNum, operator))
-    display.textContent = currentAnswer + operator;
-    previousNum = currentAnswer;
+    currentOperator = e.target.textContent;
+    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    previousDisplay.textContent = previousNum + ' ' + currentOperator;
+    currentDisplay.textContent = currentNum;
+    previousNum = currentNum;
     currentNum = '';
+    previousOperator = currentOperator;
+    
 })
 
 divideButton.addEventListener("click", function(e){
-    operator = e.target.textContent;
-    currentAnswer = (operate(+previousNum, +currentNum, operator))
-    display.textContent = currentAnswer + operator;
-    previousNum = currentAnswer;
+    currentOperator = e.target.textContent;
+    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    previousDisplay.textContent = previousNum + ' ' + currentOperator;
+    currentDisplay.textContent = currentNum;
+    previousNum = currentNum;
     currentNum = '';
+    previousOperator = currentOperator;
+    
 })
 
 clearButton.addEventListener("click", function(){
-    display.textContent = 0;
+    previousDisplay.textContent = '';
+    currentDisplay.textContent = '';
     currentNum = '';
     previousNum = '';
-    currentAnswer = 0;
+    currentOperator = '';
+    previousOperator = '';
 })
 
 equalsButton.addEventListener("click", function(){
-    currentAnswer = (operate(+previousNum, +currentNum, operator));
-    display.textContent = currentAnswer;
+    previousDisplay.textContent = previousNum + " " + currentOperator + " " + currentNum;
+    currentNum = (operate(+previousNum, +currentNum, currentOperator));
+    currentDisplay.textContent = currentNum;
+    previousNum = currentNum;
     currentNum = '';
-    previousNum = '';
-    currentAnswer = 0;
+    previousOperator = '';
+    currentOperator = '';
+    console.log(previousNum);
 })
