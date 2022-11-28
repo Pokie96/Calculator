@@ -29,7 +29,9 @@ function subtract (a, b){
 
 
 function multiply (a, b){
-    if(a === 0){
+    if(b === 0){
+        b = 1;
+    } else if(a === 0){
         a = 1;
     }
     let total = a * b;
