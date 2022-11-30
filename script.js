@@ -40,7 +40,14 @@ function multiply (a, b){
 
 
 function divide (a, b){
-    total = a / b;
+    if(/*divideClickCounter === 0 &&*/ a === 0){
+        total = b;
+        divideClickCounter++;
+    } else if(b === 0){
+        total = a;
+    } else{
+        total = a / b;
+    }
     return total;
 }
 
@@ -92,9 +99,9 @@ addButton.addEventListener("click", function(e){
 subtractButton.addEventListener("click", function(e){
     currentOperator = e.target.textContent;
     currentNum = operate(+previousNum, +currentNum, currentOperator);
+    previousNum = currentNum;
     previousDisplay.textContent = previousNum + ' ' + currentOperator;
     currentDisplay.textContent = currentNum;
-    previousNum = currentNum;
     currentNum = '';
     previousOperator = currentOperator;
     
@@ -103,9 +110,9 @@ subtractButton.addEventListener("click", function(e){
 multiplyButton.addEventListener("click", function(e){
     currentOperator = e.target.textContent;
     currentNum = operate(+previousNum, +currentNum, currentOperator);
+    previousNum = currentNum;
     previousDisplay.textContent = previousNum + ' ' + currentOperator;
     currentDisplay.textContent = currentNum;
-    previousNum = currentNum;
     currentNum = '';
     previousOperator = currentOperator;
     
@@ -114,12 +121,12 @@ multiplyButton.addEventListener("click", function(e){
 divideButton.addEventListener("click", function(e){
     currentOperator = e.target.textContent;
     currentNum = operate(+previousNum, +currentNum, currentOperator);
+    previousNum = currentNum;
     previousDisplay.textContent = previousNum + ' ' + currentOperator;
     currentDisplay.textContent = currentNum;
-    previousNum = currentNum;
     currentNum = '';
     previousOperator = currentOperator;
-    
+    console.log(previousNum);
 })
 
 clearButton.addEventListener("click", function(){
