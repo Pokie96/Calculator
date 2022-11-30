@@ -40,7 +40,7 @@ function multiply (a, b){
 
 
 function divide (a, b){
-    if(/*divideClickCounter === 0 &&*/ a === 0){
+    if(a === 0){
         total = b;
         divideClickCounter++;
     } else if(b === 0){
@@ -71,6 +71,8 @@ let currentNum = '';
 let currentOperator = '';
 let previousOperator = '';
 let subtractClickCounter = 0;
+let addClickCounter = 0;
+let multiplyClickCounter = 0;
 let divideClickCounter = 0;
 
 
@@ -87,46 +89,86 @@ for(let i = 0; i < numButtons.length; i++){
 
 addButton.addEventListener("click", function(e){
     currentOperator = e.target.textContent;
-    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    if(addClickCounter === 0){
+        if(!previousOperator){
+            currentNum = operate(+previousNum, +currentNum, currentOperator);
+        } else {
+            currentNum = operate(+previousNum, +currentNum, previousOperator)
+        };
+    } else{
+        currentNum = operate(+previousNum, +currentNum, currentOperator);
+    }
     previousNum = currentNum;
     previousDisplay.textContent = previousNum + ' ' + currentOperator;
     currentDisplay.textContent = currentNum;
     currentNum = '';
     previousOperator = currentOperator;
-    
+    subtractClickCounter = 0;
+    multiplyClickCounter = 0;
+    divideClickCounter = 0;
 })
 
 subtractButton.addEventListener("click", function(e){
     currentOperator = e.target.textContent;
-    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    if(subtractClickCounter === 0){
+        if(!previousOperator){
+            currentNum = operate(+previousNum, +currentNum, currentOperator);
+        } else {
+            currentNum = operate(+previousNum, +currentNum, previousOperator)
+        };
+    } else{
+        currentNum = operate(+previousNum, +currentNum, currentOperator);
+    }
     previousNum = currentNum;
     previousDisplay.textContent = previousNum + ' ' + currentOperator;
     currentDisplay.textContent = currentNum;
     currentNum = '';
     previousOperator = currentOperator;
-    
+    addClickCounter = 0;
+    multiplyClickCounter = 0;
+    divideClickCounter = 0;
 })
 
 multiplyButton.addEventListener("click", function(e){
     currentOperator = e.target.textContent;
-    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    if(multiplyClickCounter === 0){
+        if(!previousOperator){
+            currentNum = operate(+previousNum, +currentNum, currentOperator);
+        } else {
+            currentNum = operate(+previousNum, +currentNum, previousOperator)
+        };
+    } else{
+        currentNum = operate(+previousNum, +currentNum, currentOperator);
+    }
     previousNum = currentNum;
     previousDisplay.textContent = previousNum + ' ' + currentOperator;
     currentDisplay.textContent = currentNum;
     currentNum = '';
     previousOperator = currentOperator;
-    
+    subtractClickCounter = 0;
+    addClickCounter = 0;
+    divideClickCounter = 0;
 })
 
 divideButton.addEventListener("click", function(e){
     currentOperator = e.target.textContent;
-    currentNum = operate(+previousNum, +currentNum, currentOperator);
+    if(divideClickCounter === 0){
+        if(!previousOperator){
+            currentNum = operate(+previousNum, +currentNum, currentOperator);
+        } else {
+            currentNum = operate(+previousNum, +currentNum, previousOperator)
+        };
+    } else{
+        currentNum = operate(+previousNum, +currentNum, currentOperator);
+    }
     previousNum = currentNum;
     previousDisplay.textContent = previousNum + ' ' + currentOperator;
     currentDisplay.textContent = currentNum;
     currentNum = '';
     previousOperator = currentOperator;
-    console.log(previousNum);
+    subtractClickCounter = 0;
+    multiplyClickCounter = 0;
+    addClickCounter = 0;
 })
 
 clearButton.addEventListener("click", function(){
@@ -136,6 +178,10 @@ clearButton.addEventListener("click", function(){
     previousNum = '';
     currentOperator = '';
     previousOperator = '';
+    subtractClickCounter = 0;
+    addClickCounter = 0;
+    multiplyClickCounter = 0;
+    divideClickCounter = 0;
 })
 
 equalsButton.addEventListener("click", function(){
@@ -146,5 +192,8 @@ equalsButton.addEventListener("click", function(){
     currentNum = '';
     previousOperator = '';
     currentOperator = '';
-    console.log(previousNum);
+    subtractClickCounter = 0;
+    addClickCounter = 0;
+    multiplyClickCounter = 0;
+    divideClickCounter = 0;
 })
