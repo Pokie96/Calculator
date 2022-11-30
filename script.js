@@ -13,7 +13,7 @@ const divideButton = document.getElementById("divide");
 //All functions that will be used in my calculator program:
 function add (a, b){
     let total = a + b;
-    return total;
+    return Math.round(total * 100) / 100;
 }
 
 
@@ -24,7 +24,7 @@ function subtract (a, b){
     } else{
         total = a - b;
     }
-    return total;
+    return Math.round(total * 100) / 100;
 }
 
 
@@ -35,7 +35,7 @@ function multiply (a, b){
         a = 1;
     }
     let total = a * b;
-    return total;
+    return Math.round(total * 100) / 100;
 }
 
 
@@ -48,7 +48,7 @@ function divide (a, b){
     } else{
         total = a / b;
     }
-    return total;
+    return Math.round(total * 100) / 100;
 }
 
 
